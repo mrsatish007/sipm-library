@@ -22,8 +22,33 @@ export default function RootLayout({
       </head>
       <body style={{ fontFamily: 'Poppins, sans-serif' }}>
         <Header />
-        <main>{children}</main>
+        <main style={{ paddingBottom: '80px' }}>{children}</main>
         <Footer />
+        
+        {/* Mobile Navigation */}
+        <div className="mobile-nav" style={{ display: 'none' }}>
+          <a href="/" className="mobile-nav-item">
+            <div style={{ fontSize: '24px' }}>🏠</div>
+            <span>Home</span>
+          </a>
+          <a href="/catalogue" className="mobile-nav-item">
+            <div style={{ fontSize: '24px' }}>📚</div>
+            <span>Books</span>
+          </a>
+          <a href="/ai-assistant" className="mobile-nav-item">
+            <div style={{ fontSize: '24px' }}>🤖</div>
+            <span>AI</span>
+          </a>
+          <a href="/dashboard" className="mobile-nav-item">
+            <div style={{ fontSize: '24px' }}>📊</div>
+            <span>Profile</span>
+          </a>
+        </div>
+        
+        {/* Floating AI Assistant Button */}
+        <a href="/ai-assistant" className="ai-float-button" style={{ display: 'none', textDecoration: 'none' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>🤖</div>
+        </a>
       </body>
     </html>
   );

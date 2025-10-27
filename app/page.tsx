@@ -5,6 +5,8 @@ import { useState } from 'react';
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  
   const recommendedBooks = [
     { id: 1, title: 'Financial Management', author: 'Dr. Ramesh Sharma', category: 'Finance', cover: '📕' },
     { id: 2, title: 'Marketing Strategies', author: 'Prof. Priya Singh', category: 'Marketing', cover: '📗' },
@@ -61,6 +63,22 @@ export default function Home() {
       { title: 'Database Design', author: 'Prof. Rita Kumar', publisher: 'McGraw Hill', image: '📐' }
     ]
   };
+  
+  // Collect all books for search
+  const allBooksForSearch = [
+    ...mbaBooks.financialManagement,
+    ...mbaBooks.marketingStrategies,
+    ...mbaBooks.operationsResearch,
+    ...mcaBooks.dataStructures,
+    ...mcaBooks.webDevelopment,
+    ...mcaBooks.databaseSystems
+  ];
+  
+  // Get suggestions based on search query
+  const suggestions = searchQuery ? allBooksForSearch.filter(book => 
+    book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    book.author.toLowerCase().includes(searchQuery.toLowerCase())
+  ).slice(0, 5) : [];
 
   return (
     <div>
@@ -133,19 +151,65 @@ export default function Home() {
             gap: '15px'
           }}>
             <div style={{ fontSize: '30px', color: '#FFC107' }}>🔍</div>
-            <input
-              type="text"
-              placeholder="Search books by title, author, or subject..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              style={{
-                flex: 1,
-                border: 'none',
-                outline: 'none',
-                fontSize: '16px',
-                color: '#333'
-              }}
-            />
+            <div style={{ flex: 1, position: 'relative' }}>
+              <input
+                type="text"
+                placeholder="Search books by title, author, or subject..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => setShowSuggestions(true)}
+                onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                style={{
+                  width: '100%',
+                  border: 'none',
+                  outline: 'none',
+                  fontSize: '16px',
+                  color: '#333'
+                }}
+              />
+              
+              {/* Search Suggestions */}
+              {showSuggestions && suggestions.length > 0 && (
+                <div style={{
+                  position: 'absolute',
+                  top: '100%',
+                  left: 0,
+                  right: 0,
+                  backgroundColor: 'white',
+                  borderRadius: '15px',
+                  boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
+                  marginTop: '5px',
+                  maxHeight: '300px',
+                  overflowY: 'auto',
+                  zIndex: 1000
+                }}>
+                  {suggestions.map((book, idx) => (
+                    <div
+                      key={idx}
+                      onClick={() => {
+                        setSearchQuery(book.title);
+                        setShowSuggestions(false);
+                      }}
+                      style={{
+                        padding: '12px 20px',
+                        cursor: 'pointer',
+                        borderBottom: idx < suggestions.length - 1 ? '1px solid #f0f0f0' : 'none',
+                        transition: 'background 0.2s'
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F8F9FA'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'white'}
+                    >
+                      <div style={{ fontSize: '15px', fontWeight: '600', color: '#002B5B', marginBottom: '3px' }}>
+                        {book.title}
+                      </div>
+                      <div style={{ fontSize: '13px', color: '#666' }}>
+                        {book.author} • {book.publisher}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
             <Link href={`/catalogue${searchQuery ? `?search=${searchQuery}` : ''}`}>
               <button style={{
                 backgroundColor: '#002B5B',
@@ -213,12 +277,21 @@ export default function Home() {
               <h4 style={{ fontSize: '22px', fontWeight: '600', color: '#002B5B', marginBottom: '20px' }}>💼 Financial Management (5 Books)</h4>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px' }}>
                 {mbaBooks.financialManagement.map((book, idx) => (
-                  <div key={idx} style={{
+                  <div key={idx} className="book-card" style={{
                     backgroundColor: 'white',
                     padding: '20px',
                     borderRadius: '12px',
                     boxShadow: '0 3px 15px rgba(0,0,0,0.1)',
-                    borderLeft: '4px solid #002B5B'
+                    borderLeft: '4px solid #002B5B',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-8px)';
+                    e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,0,0,0.2)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 3px 15px rgba(0,0,0,0.1)';
                   }}>
                     <div style={{ fontSize: '24px', marginBottom: '10px' }}>{book.image}</div>
                     <h5 style={{ fontSize: '16px', fontWeight: '600', color: '#002B5B', marginBottom: '8px' }}>{book.title}</h5>
@@ -234,12 +307,21 @@ export default function Home() {
               <h4 style={{ fontSize: '22px', fontWeight: '600', color: '#002B5B', marginBottom: '20px' }}>📢 Marketing Strategies (5 Books)</h4>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px' }}>
                 {mbaBooks.marketingStrategies.map((book, idx) => (
-                  <div key={idx} style={{
+                  <div key={idx} className="book-card" style={{
                     backgroundColor: 'white',
                     padding: '20px',
                     borderRadius: '12px',
                     boxShadow: '0 3px 15px rgba(0,0,0,0.1)',
-                    borderLeft: '4px solid #002B5B'
+                    borderLeft: '4px solid #002B5B',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-8px)';
+                    e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,0,0,0.2)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 3px 15px rgba(0,0,0,0.1)';
                   }}>
                     <div style={{ fontSize: '24px', marginBottom: '10px' }}>{book.image}</div>
                     <h5 style={{ fontSize: '16px', fontWeight: '600', color: '#002B5B', marginBottom: '8px' }}>{book.title}</h5>
@@ -255,12 +337,21 @@ export default function Home() {
               <h4 style={{ fontSize: '22px', fontWeight: '600', color: '#002B5B', marginBottom: '20px' }}>📊 Operations Research (5 Books)</h4>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px' }}>
                 {mbaBooks.operationsResearch.map((book, idx) => (
-                  <div key={idx} style={{
+                  <div key={idx} className="book-card" style={{
                     backgroundColor: 'white',
                     padding: '20px',
                     borderRadius: '12px',
                     boxShadow: '0 3px 15px rgba(0,0,0,0.1)',
-                    borderLeft: '4px solid #002B5B'
+                    borderLeft: '4px solid #002B5B',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-8px)';
+                    e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,0,0,0.2)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 3px 15px rgba(0,0,0,0.1)';
                   }}>
                     <div style={{ fontSize: '24px', marginBottom: '10px' }}>{book.image}</div>
                     <h5 style={{ fontSize: '16px', fontWeight: '600', color: '#002B5B', marginBottom: '8px' }}>{book.title}</h5>
