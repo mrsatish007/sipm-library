@@ -146,6 +146,56 @@ export default function Dashboard() {
         {/* Librarian Dashboard */}
         {role === 'librarian' && (
           <div>
+            {/* Library Facilities */}
+            <div style={{
+              backgroundColor: '#002B5B',
+              color: 'white',
+              padding: '30px',
+              borderRadius: '20px',
+              marginBottom: '40px',
+              boxShadow: '0 10px 40px rgba(0,0,0,0.15)'
+            }}>
+              <h2 style={{ fontSize: '28px', fontWeight: '700', marginBottom: '30px', textAlign: 'center' }}>
+                🏛️ Library Facilities
+              </h2>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+                gap: '20px'
+              }}>
+                <div style={{ textAlign: 'center', backgroundColor: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '15px' }}>
+                  <div style={{ fontSize: '35px', marginBottom: '10px' }}>📚</div>
+                  <div style={{ fontSize: '28px', fontWeight: '700', marginBottom: '5px' }}>8,450</div>
+                  <div style={{ fontSize: '14px', opacity: 0.9 }}>Total Books</div>
+                </div>
+                <div style={{ textAlign: 'center', backgroundColor: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '15px' }}>
+                  <div style={{ fontSize: '35px', marginBottom: '10px' }}>📄</div>
+                  <div style={{ fontSize: '28px', fontWeight: '700', marginBottom: '5px' }}>26</div>
+                  <div style={{ fontSize: '14px', opacity: 0.9 }}>Journals</div>
+                </div>
+                <div style={{ textAlign: 'center', backgroundColor: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '15px' }}>
+                  <div style={{ fontSize: '35px', marginBottom: '10px' }}>📰</div>
+                  <div style={{ fontSize: '28px', fontWeight: '700', marginBottom: '5px' }}>10</div>
+                  <div style={{ fontSize: '14px', opacity: 0.9 }}>Newspapers</div>
+                </div>
+                <div style={{ textAlign: 'center', backgroundColor: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '15px' }}>
+                  <div style={{ fontSize: '35px', marginBottom: '10px' }}>📖</div>
+                  <div style={{ fontSize: '28px', fontWeight: '700', marginBottom: '5px' }}>08</div>
+                  <div style={{ fontSize: '14px', opacity: 0.9 }}>Magazines</div>
+                </div>
+                <div style={{ textAlign: 'center', backgroundColor: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '15px' }}>
+                  <div style={{ fontSize: '35px', marginBottom: '10px' }}>💻</div>
+                  <div style={{ fontSize: '28px', fontWeight: '700', marginBottom: '5px' }}>15</div>
+                  <div style={{ fontSize: '14px', opacity: 0.9 }}>Digital Library</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Books in History */}
+            <h2 style={{ fontSize: '28px', fontWeight: '700', marginBottom: '30px', color: '#002B5B', textAlign: 'center' }}>
+              📚 Books in History
+            </h2>
+
             {/* Statistics Cards */}
             <div style={{
               display: 'grid',
@@ -161,18 +211,7 @@ export default function Dashboard() {
                 textAlign: 'center'
               }}>
                 <div style={{ fontSize: '40px', marginBottom: '10px' }}>📚</div>
-                <div style={{ fontSize: '32px', fontWeight: '700', color: '#002B5B', marginBottom: '5px' }}>1250</div>
-                <div style={{ fontSize: '14px', color: '#666' }}>Total Books</div>
-              </div>
-              <div style={{
-                backgroundColor: 'white',
-                padding: '25px',
-                borderRadius: '15px',
-                boxShadow: '0 5px 20px rgba(0,0,0,0.1)',
-                textAlign: 'center'
-              }}>
-                <div style={{ fontSize: '40px', marginBottom: '10px' }}>📖</div>
-                <div style={{ fontSize: '32px', fontWeight: '700', color: '#4CAF50', marginBottom: '5px' }}>320</div>
+                <div style={{ fontSize: '32px', fontWeight: '700', color: '#002B5B', marginBottom: '5px' }}>320</div>
                 <div style={{ fontSize: '14px', color: '#666' }}>Borrowed</div>
               </div>
               <div style={{
@@ -183,7 +222,7 @@ export default function Dashboard() {
                 textAlign: 'center'
               }}>
                 <div style={{ fontSize: '40px', marginBottom: '10px' }}>⚠️</div>
-                <div style={{ fontSize: '32px', fontWeight: '700', color: '#f44336', marginBottom: '5px' }}>18</div>
+                <div style={{ fontSize: '32px', fontWeight: '700', color: '#f44336', marginBottom: '5px' }}>08</div>
                 <div style={{ fontSize: '14px', color: '#666' }}>Overdue</div>
               </div>
               <div style={{
@@ -194,8 +233,10 @@ export default function Dashboard() {
                 textAlign: 'center'
               }}>
                 <div style={{ fontSize: '40px', marginBottom: '10px' }}>👥</div>
-                <div style={{ fontSize: '32px', fontWeight: '700', color: '#FFC107', marginBottom: '5px' }}>450</div>
-                <div style={{ fontSize: '14px', color: '#666' }}>Active Members</div>
+                <div style={{ fontSize: '32px', fontWeight: '700', color: '#4CAF50', marginBottom: '5px' }}>110</div>
+                <div style={{ fontSize: '14px', color: '#666', marginBottom: '3px' }}>Students</div>
+                <div style={{ fontSize: '32px', fontWeight: '700', color: '#FFC107', marginTop: '10px' }}>25</div>
+                <div style={{ fontSize: '14px', color: '#666' }}>Staff</div>
               </div>
             </div>
 
@@ -260,36 +301,6 @@ export default function Dashboard() {
                 <div style={{ fontSize: '40px' }}>📊</div>
                 <div>View Reports</div>
               </button>
-            </div>
-
-            {/* Recent Activities */}
-            <div style={{
-              backgroundColor: 'white',
-              borderRadius: '15px',
-              padding: '30px',
-              boxShadow: '0 5px 20px rgba(0,0,0,0.1)'
-            }}>
-              <h3 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '20px', color: '#002B5B' }}>
-                Recent Activities
-              </h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                {[
-                  'Rajesh Kumar borrowed Financial Management',
-                  'Priya Sharma returned Marketing Strategies',
-                  'New book added: Innovation Management',
-                  'System backup completed'
-                ].map((activity, idx) => (
-                  <div key={idx} style={{
-                    padding: '15px',
-                    backgroundColor: '#F8F9FA',
-                    borderRadius: '10px',
-                    fontSize: '15px',
-                    color: '#333'
-                  }}>
-                    {activity}
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         )}

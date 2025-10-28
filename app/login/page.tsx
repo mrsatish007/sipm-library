@@ -12,6 +12,13 @@ export default function Login() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Store login info in localStorage
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('userInfo', JSON.stringify({
+      email: credentials.email,
+      role: loginType
+    }));
+    
     // Simulate login (in real app, this would connect to backend)
     alert(`Login as ${loginType} successful!\nEmail: ${credentials.email}`);
     

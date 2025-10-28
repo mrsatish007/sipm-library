@@ -27,11 +27,24 @@ export default function Footer() {
           {/* Contact Info */}
           <div>
             <h3 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '15px', color: '#FFC107' }}>Contact Us</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px', color: '#ccc' }}>
-              <p>📍 123 Academic Street, Education City</p>
-              <p>📧 library@sipm.edu</p>
-              <p>📞 +91 12345 67890</p>
-              <div style={{ display: 'flex', gap: '15px', marginTop: '10px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '14px', color: '#ccc' }}>
+              <div>
+                <p style={{ fontWeight: '600', color: '#FFC107', marginBottom: '5px' }}>📍 Main Campus</p>
+                <p style={{ fontSize: '13px' }}>Gollapalem Road, Kakinada – 533003</p>
+              </div>
+              <div>
+                <p style={{ fontWeight: '600', color: '#FFC107', marginBottom: '5px' }}>🏢 City Office</p>
+                <p style={{ fontSize: '13px' }}>Ramarao Peta, Kakinada – 533004</p>
+              </div>
+              <div>
+                <p style={{ fontWeight: '600', color: '#FFC107', marginBottom: '5px' }}>📧 Email</p>
+                <p style={{ fontSize: '13px' }}>office.sipm602@gmail.com</p>
+              </div>
+              <div>
+                <p style={{ fontWeight: '600', color: '#FFC107', marginBottom: '5px' }}>📞 Phone</p>
+                <p style={{ fontSize: '13px' }}>8977665333, 0884-2377995</p>
+              </div>
+              <div style={{ display: 'flex', gap: '15px', marginTop: '5px' }}>
                 <a href="#" style={{ color: '#FFC107', fontSize: '20px' }}>📘</a>
                 <a href="#" style={{ color: '#FFC107', fontSize: '20px' }}>🐦</a>
                 <a href="#" style={{ color: '#FFC107', fontSize: '20px' }}>🔗</a>

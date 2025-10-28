@@ -316,7 +316,7 @@ export default function AboutContact() {
                       </div>
                       <div style={{ fontSize: '15px', color: '#666', lineHeight: '1.6' }}>
                         Monday - Saturday: 9:00 AM - 6:00 PM<br />
-                        Sunday: Closed<br />
+                        Sunday: 9:00 AM - 1:00 PM<br />
                         Extended hours during exams
                       </div>
                     </div>
