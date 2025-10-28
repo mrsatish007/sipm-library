@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { contactInfo } from './contactInfo';
 
 export default function Footer() {
   return (
@@ -29,20 +30,20 @@ export default function Footer() {
             <h3 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '15px', color: '#FFC107' }}>Contact Us</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '14px', color: '#ccc' }}>
               <div>
-                <p style={{ fontWeight: '600', color: '#FFC107', marginBottom: '5px' }}>📍 Main Campus</p>
-                <p style={{ fontSize: '13px' }}>Gollapalem Road, Kakinada – 533003</p>
+                <p style={{ fontWeight: '600', color: '#FFC107', marginBottom: '5px' }}>📍 {contactInfo.mainCampus.title}</p>
+                <p style={{ fontSize: '13px' }}>{contactInfo.mainCampus.addressLines.join(', ')}</p>
               </div>
               <div>
-                <p style={{ fontWeight: '600', color: '#FFC107', marginBottom: '5px' }}>🏢 City Office</p>
-                <p style={{ fontSize: '13px' }}>Ramarao Peta, Kakinada – 533004</p>
+                <p style={{ fontWeight: '600', color: '#FFC107', marginBottom: '5px' }}>🏢 {contactInfo.cityOffice.title}</p>
+                <p style={{ fontSize: '13px' }}>{contactInfo.cityOffice.addressLines.join(', ')}</p>
               </div>
               <div>
                 <p style={{ fontWeight: '600', color: '#FFC107', marginBottom: '5px' }}>📧 Email</p>
-                <p style={{ fontSize: '13px' }}>office.sipm602@gmail.com</p>
+                <p style={{ fontSize: '13px' }}>{contactInfo.email}</p>
               </div>
               <div>
                 <p style={{ fontWeight: '600', color: '#FFC107', marginBottom: '5px' }}>📞 Phone</p>
-                <p style={{ fontSize: '13px' }}>8977665333, 0884-2377995</p>
+                <p style={{ fontSize: '13px' }}>{contactInfo.phones.join(', ')}</p>
               </div>
               <div style={{ display: 'flex', gap: '15px', marginTop: '5px' }}>
                 <a href="#" style={{ color: '#FFC107', fontSize: '20px' }}>📘</a>
