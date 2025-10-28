@@ -1,11 +1,9 @@
 import type { NextConfig } from "next";
 
+/** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
-  experimental: {
-    turbopack: {
-      root: __dirname,
-    },
-  },
+  // Simple configuration without experimental features
+  // This will allow the app to run without configuration errors
 };
 
 export default nextConfig;

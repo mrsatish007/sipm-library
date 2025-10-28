@@ -192,7 +192,7 @@ export default function Home() {
       }}>
         <div className="container" style={{ maxWidth: '900px' }}>
           <h1 style={{ fontSize: '48px', fontWeight: '700', marginBottom: '20px', lineHeight: '1.2' }}>
-            Welcome to SIPM Digital Library Portal
+            Welcome to Sanjeev Digital Library Portal
           </h1>
           <p style={{ fontSize: '20px', marginBottom: '40px', opacity: 0.95 }}>
             Access books, journals, and AI-powered learning assistance anytime.
