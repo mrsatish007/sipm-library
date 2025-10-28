@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { contactInfo } from '../components/contactInfo';
 
 export default function AboutContact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -260,10 +259,12 @@ export default function AboutContact() {
                     <div style={{ fontSize: '30px' }}>📍</div>
                     <div>
                       <div style={{ fontSize: '16px', fontWeight: '600', marginBottom: '5px', color: '#002B5B' }}>
-                        {contactInfo.mainCampus.title}
+                        Main Campus
                       </div>
                       <div style={{ fontSize: '15px', color: '#666', lineHeight: '1.6' }}>
-                        {contactInfo.mainCampus.addressLines.join(', ')}
+                        Gollapalem Road<br />
+                        Kakinada – 533003<br />
+                        Andhra Pradesh, India
                       </div>
                     </div>
                   </div>
@@ -272,10 +273,12 @@ export default function AboutContact() {
                     <div style={{ fontSize: '30px' }}>🏢</div>
                     <div>
                       <div style={{ fontSize: '16px', fontWeight: '600', marginBottom: '5px', color: '#002B5B' }}>
-                        {contactInfo.cityOffice.title}
+                        City Office
                       </div>
                       <div style={{ fontSize: '15px', color: '#666', lineHeight: '1.6' }}>
-                        {contactInfo.cityOffice.addressLines.join(', ')}
+                        Sanjeev Group of Colleges<br />
+                        Ramarao Peta, Kakinada – 533004<br />
+                        Andhra Pradesh, India
                       </div>
                     </div>
                   </div>
@@ -287,7 +290,7 @@ export default function AboutContact() {
                         Email
                       </div>
                       <div style={{ fontSize: '15px', color: '#666' }}>
-                        {contactInfo.email}
+                        office.sipm602@gmail.com
                       </div>
                     </div>
                   </div>
@@ -299,7 +302,8 @@ export default function AboutContact() {
                         Phone
                       </div>
                       <div style={{ fontSize: '15px', color: '#666' }}>
-                        {contactInfo.phones.join(', ')}
+                        8977665333<br />
+                        0884-2377995
                       </div>
                     </div>
                   </div>
@@ -311,9 +315,9 @@ export default function AboutContact() {
                         Library Hours
                       </div>
                       <div style={{ fontSize: '15px', color: '#666', lineHeight: '1.6' }}>
-                        {contactInfo.hours.map((h, i) => (
-                          <div key={i}>{h}</div>
-                        ))}
+                        Monday - Saturday: 9:00 AM - 6:00 PM<br />
+                        Sunday: 9:00 AM - 1:00 PM<br />
+                        Extended hours during exams
                       </div>
                     </div>
                   </div>

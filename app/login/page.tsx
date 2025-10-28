@@ -18,6 +18,8 @@ export default function Login() {
       email: credentials.email,
       role: loginType
     }));
+    // Notify app about auth change so Header updates immediately
+    window.dispatchEvent(new Event('auth-change'));
     
     // Simulate login (in real app, this would connect to backend)
     alert(`Login as ${loginType} successful!\nEmail: ${credentials.email}`);

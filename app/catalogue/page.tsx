@@ -1,13 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function BooksCatalogue() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedYear, setSelectedYear] = useState('All');
+  const [customBooks, setCustomBooks] = useState<Array<{ id: number; title: string; author: string; category: string; year: string; available: boolean; cover: string }>>([]);
 
-  const books = [
+  const defaultBooks = [
     { id: 1, title: 'Financial Management Principles', author: 'Dr. Ramesh Sharma', category: 'Finance', year: '2023', available: true, cover: '📕' },
     { id: 2, title: 'Digital Marketing Strategies', author: 'Prof. Priya Singh', category: 'Marketing', year: '2024', available: true, cover: '📗' },
     { id: 3, title: 'Advanced Operations Research', author: 'Dr. Amit Kumar', category: 'Operations', year: '2022', available: false, cover: '📘' },
@@ -20,28 +21,32 @@ export default function BooksCatalogue() {
     { id: 10, title: 'Leadership in Organizations', author: 'Prof. Deepa Sharma', category: 'Leadership', year: '2024', available: true, cover: '📗' },
     { id: 11, title: 'Investment Banking Fundamentals', author: 'Dr. Arjun Nair', category: 'Finance', year: '2022', available: false, cover: '📘' },
     { id: 12, title: 'Innovation and Entrepreneurship', author: 'Prof. Kavita Iyer', category: 'Entrepreneurship', year: '2024', available: true, cover: '📙' },
-
-    // MCA Books
-    { id: 101, title: 'Data Structures and Algorithms', author: 'Dr. Amit Kumar', category: 'MCA - Data Structures', year: '2024', available: true, cover: '💻' },
-    { id: 102, title: 'Advanced Algorithms', author: 'Prof. Seema Patel', category: 'MCA - Algorithms', year: '2023', available: true, cover: '⚙️' },
-    { id: 103, title: 'Database Management Systems', author: 'Dr. Ramesh Kumar', category: 'MCA - Database Systems', year: '2022', available: false, cover: '🗄️' },
-    { id: 104, title: 'Web Technologies', author: 'Dr. Priya Singh', category: 'MCA - Web Development', year: '2024', available: true, cover: '🌐' },
-    { id: 105, title: 'Object Oriented Software Engineering', author: 'Dr. Ravi Patel', category: 'MCA - Software Engineering', year: '2023', available: true, cover: '🔧' },
-    { id: 106, title: 'Computer Networks', author: 'Prof. Ravi Desai', category: 'MCA - Networks & Security', year: '2022', available: true, cover: '🛡️' },
-    { id: 107, title: 'Formal Languages & Automata', author: 'Dr. Sunil Kumar', category: 'MCA - Theory of Computation', year: '2021', available: true, cover: '🔤' },
-    { id: 108, title: 'Robotics Basics', author: 'Dr. Ashok Mehta', category: 'MCA - Robotics', year: '2024', available: true, cover: '🤖' },
+    // MCA default examples
+    { id: 1001, title: 'Data Structures and Algorithms', author: 'Dr. Amit Kumar', category: 'MCA - Data Structures', year: '2024', available: true, cover: '💻' },
+    { id: 1002, title: 'Web Technologies', author: 'Dr. Priya Singh', category: 'MCA - Web Development', year: '2023', available: true, cover: '🌐' },
+    { id: 1003, title: 'Database Management Systems', author: 'Dr. Ramesh Kumar', category: 'MCA - Database Systems', year: '2022', available: true, cover: '🗄️' },
+    { id: 1004, title: 'Information Security and Cryptography', author: 'Dr. Deepak Verma', category: 'MCA - Cryptography', year: '2021', available: true, cover: '🔐' },
   ];
 
-  const categories = [
-    'All',
-    // MBA
-    'Finance', 'Marketing', 'Operations', 'HR', 'Strategy', 'Economics', 'Management', 'Leadership', 'Entrepreneurship',
-    // MCA
-    'MCA - Data Structures', 'MCA - Algorithms', 'MCA - Database Systems', 'MCA - Web Development', 'MCA - Software Engineering', 'MCA - Networks & Security', 'MCA - Theory of Computation', 'MCA - Robotics'
-  ];
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('customBooks');
+      if (stored) {
+        try {
+          setCustomBooks(JSON.parse(stored));
+        } catch {
+          setCustomBooks([]);
+        }
+      }
+    }
+  }, []);
+
+  const categories = ['All', 'Finance', 'Marketing', 'Operations', 'HR', 'Strategy', 'Economics', 'Management', 'Leadership', 'Entrepreneurship', 'MCA - Data Structures', 'MCA - Web Development', 'MCA - Database Systems', 'MCA - Data Mining', 'MCA - IoT', 'MCA - Formal Languages', 'MCA - Cryptography', 'MCA - Robotics', 'MCA - Computer Organization', 'MCA - Algorithms', 'MCA - OOSE'];
   const years = ['All', '2024', '2023', '2022', '2021', '2020'];
 
-  const filteredBooks = books.filter(book => {
+  const allBooks = [...defaultBooks, ...customBooks];
+
+  const filteredBooks = allBooks.filter(book => {
     const matchesSearch = book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          book.author.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === 'All' || book.category === selectedCategory;

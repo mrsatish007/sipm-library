@@ -2,14 +2,12 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showDesktopWarning, setShowDesktopWarning] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState<{email: string, role: string} | null>(null);
-  const pathname = usePathname();
 
   // Check if user is on mobile device
   useEffect(() => {
@@ -19,39 +17,38 @@ export default function Header() {
         setTimeout(() => setShowDesktopWarning(true), 500);
       }
 
-      const syncLoginState = () => {
-        const storedLogin = localStorage.getItem('isLoggedIn');
-        const storedUserInfo = localStorage.getItem('userInfo');
-        if (storedLogin === 'true' && storedUserInfo) {
+      // Check for stored login info
+      const storedLogin = localStorage.getItem('isLoggedIn');
+      const storedUserInfo = localStorage.getItem('userInfo');
+      if (storedLogin === 'true' && storedUserInfo) {
+        setIsLoggedIn(true);
+        setUserInfo(JSON.parse(storedUserInfo));
+      }
+
+      // Listen for auth changes (login/logout) to update header instantly
+      const onAuthChange = () => {
+        const updatedLogin = localStorage.getItem('isLoggedIn');
+        const updatedUserInfo = localStorage.getItem('userInfo');
+        if (updatedLogin === 'true' && updatedUserInfo) {
           setIsLoggedIn(true);
-          setUserInfo(JSON.parse(storedUserInfo));
+          setUserInfo(JSON.parse(updatedUserInfo));
         } else {
           setIsLoggedIn(false);
           setUserInfo(null);
         }
       };
-
-      // Initial check and on-route change check
-      syncLoginState();
-
-      // Listen to custom and browser events to keep state in sync
-      const handleVisibility = () => syncLoginState();
-      const handleStorage = () => syncLoginState();
-      window.addEventListener('visibilitychange', handleVisibility);
-      window.addEventListener('storage', handleStorage);
-
-      return () => {
-        window.removeEventListener('visibilitychange', handleVisibility);
-        window.removeEventListener('storage', handleStorage);
-      };
+      window.addEventListener('auth-change', onAuthChange);
+      return () => window.removeEventListener('auth-change', onAuthChange);
     }
-  }, [pathname]);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('userInfo');
     setIsLoggedIn(false);
     setUserInfo(null);
+    // Notify app about auth change so Header updates immediately
+    window.dispatchEvent(new Event('auth-change'));
     window.location.href = '/';
   };
 
@@ -171,9 +168,9 @@ export default function Header() {
             <Link href="/dashboard" style={{ color: 'white', textDecoration: 'none', padding: '10px', borderRadius: '5px', transition: 'background 0.3s' }}>Dashboard</Link>
             <Link href="/about" style={{ color: 'white', textDecoration: 'none', padding: '10px', borderRadius: '5px', transition: 'background 0.3s' }}>Contact</Link>
             {isLoggedIn ? (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px' }}>
                 <div style={{ fontSize: '13px', color: '#FFC107' }}>👤 {userInfo?.role || 'User'}</div>
-                <button onClick={handleLogout} style={{ backgroundColor: '#FFC107', color: '#002B5B', padding: '10px', border: 'none', borderRadius: '25px', fontWeight: '600', cursor: 'pointer' }}>Logout</button>
+                <button onClick={handleLogout} style={{ backgroundColor: '#FFC107', color: '#002B5B', padding: '10px 20px', border: 'none', borderRadius: '25px', fontWeight: '600', cursor: 'pointer' }}>Logout</button>
               </div>
             ) : (
               <Link href="/login">
