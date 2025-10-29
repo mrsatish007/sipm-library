@@ -6,20 +6,22 @@ export default function BorrowReturn() {
   const [view, setView] = useState<'student' | 'librarian'>('student');
 
   const studentBooks = [
-    { id: 1, title: 'Financial Management Principles', issueDate: '2025-01-15', dueDate: '2025-02-15', status: 'active', fine: 0 },
-    { id: 2, title: 'Marketing Strategies', issueDate: '2025-01-10', dueDate: '2025-02-10', status: 'overdue', fine: 50 },
+    { id: 1, title: 'JAVA', issueDate: '2025-01-15', dueDate: '2025-02-15', status: 'active', fine: 0 },
+    { id: 2, title: 'OPERATING SYSTEM', issueDate: '2025-01-10', dueDate: '2025-02-10', status: 'overdue', fine: 50 },
     { id: 3, title: 'Operations Research', issueDate: '2024-12-20', dueDate: '2025-01-20', status: 'returned', fine: 0 },
+    { id: 4, title: 'HRM', issueDate: '2024-12-20', dueDate: '2025-01-20', status: 'returned', fine: 0 },
   ];
 
   const pendingRequests = [
-    { id: 1, studentName: 'Rajesh Kumar', bookTitle: 'Strategic Business Planning', requestDate: '2025-01-18' },
-    { id: 2, studentName: 'Priya Sharma', bookTitle: 'Human Resource Management', requestDate: '2025-01-17' },
-    { id: 3, studentName: 'Amit Singh', bookTitle: 'Economics for Managers', requestDate: '2025-01-16' },
+    { id: 1, studentName: 'A.dheeraj', bookTitle: 'Strategic Business Planning', requestDate: '2025-01-18' },
+    { id: 2, studentName: 'V.Uday kumar', bookTitle: 'Java', requestDate: '2025-01-17' },
+    { id: 3, studentName: 'S.Bhanu', bookTitle: 'Economics for Managers', requestDate: '2025-01-16' },
+    { id: 4, studentName: 'N.satish', bookTitle: 'Operating system', requestDate: '2025-01-16' },
   ];
 
   const overdueBooks = [
-    { id: 1, studentName: 'Kavya Patel', bookTitle: 'Supply Chain Optimization', issueDate: '2024-12-15', dueDate: '2025-01-15', daysOverdue: 3, fine: 150 },
-    { id: 2, studentName: 'Vikram Mehta', bookTitle: 'Leadership in Organizations', issueDate: '2024-12-10', dueDate: '2025-01-10', daysOverdue: 8, fine: 400 },
+    { id: 1, studentName: 'K.satya', bookTitle: 'Supply Chain Optimization', issueDate: '2024-12-15', dueDate: '2025-01-15', daysOverdue: 3, fine: 150 },
+    { id: 2, studentName: 'B.Satyanarayana', bookTitle: 'Leadership in Organizations', issueDate: '2024-12-10', dueDate: '2025-01-10', daysOverdue: 8, fine: 400 },
   ];
 
   return (

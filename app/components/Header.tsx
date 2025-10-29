@@ -136,6 +136,7 @@ export default function Header() {
             <Link href="/ai-assistant" style={{ color: 'white', textDecoration: 'none', fontSize: '15px', fontWeight: '500', transition: 'color 0.3s' }}>AI Assistant</Link>
             <Link href="/borrow" style={{ color: 'white', textDecoration: 'none', fontSize: '15px', fontWeight: '500', transition: 'color 0.3s' }}>Borrow/Return</Link>
             <Link href="/dashboard" style={{ color: 'white', textDecoration: 'none', fontSize: '15px', fontWeight: '500', transition: 'color 0.3s' }}>Dashboard</Link>
+            <Link href="/librarian" style={{ color: '#002B5B', backgroundColor: '#FFC107', padding: '8px 14px', borderRadius: '20px', textDecoration: 'none', fontSize: '14px', fontWeight: '700' }}>Librarian Profile</Link>
                 <Link href="/about" style={{ color: 'white', textDecoration: 'none', fontSize: '15px', fontWeight: '500', transition: 'color 0.3s' }}>Contact</Link>
                 {isLoggedIn ? (
                   <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
@@ -166,6 +167,7 @@ export default function Header() {
             <Link href="/ai-assistant" style={{ color: 'white', textDecoration: 'none', padding: '10px', borderRadius: '5px', transition: 'background 0.3s' }}>AI Assistant</Link>
             <Link href="/borrow" style={{ color: 'white', textDecoration: 'none', padding: '10px', borderRadius: '5px', transition: 'background 0.3s' }}>Borrow/Return</Link>
             <Link href="/dashboard" style={{ color: 'white', textDecoration: 'none', padding: '10px', borderRadius: '5px', transition: 'background 0.3s' }}>Dashboard</Link>
+            <Link href="/librarian" style={{ color: '#002B5B', backgroundColor: '#FFC107', textAlign: 'center', textDecoration: 'none', padding: '10px', borderRadius: '25px', fontWeight: '700' }}>Librarian Profile</Link>
             <Link href="/about" style={{ color: 'white', textDecoration: 'none', padding: '10px', borderRadius: '5px', transition: 'background 0.3s' }}>Contact</Link>
             {isLoggedIn ? (
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px' }}>

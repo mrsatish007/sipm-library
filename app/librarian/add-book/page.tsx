@@ -9,6 +9,7 @@ type Book = {
   title: string;
   author: string;
   category: string;
+  section: string;
   year: string;
   available: boolean;
   cover: string;
@@ -21,6 +22,7 @@ export default function AddBookPage() {
     title: '',
     author: '',
     category: 'MCA - Data Structures',
+    section: 'Section A',
     year: new Date().getFullYear().toString(),
     available: true,
     cover: '📘'
@@ -50,6 +52,7 @@ export default function AddBookPage() {
       title: form.title.trim(),
       author: form.author.trim(),
       category: form.category,
+      section: form.section,
       year: form.year,
       available: form.available,
       cover: form.cover || '📘'
@@ -101,6 +104,16 @@ export default function AddBookPage() {
                 {categories.map(cat => (
                   <option key={cat} value={cat}>{cat}</option>
                 ))}
+              </select>
+            </div>
+            <div>
+              <label style={{ display: 'block', fontWeight: '600', marginBottom: '8px' }}>Section</label>
+              <select value={form.section} onChange={(e) => setForm({ ...form, section: e.target.value })} style={{ width: '100%', padding: '12px 14px', border: '2px solid #eee', borderRadius: '10px', outline: 'none' }}>
+                <option value="Section A">Section A</option>
+                <option value="Section B">Section B</option>
+                <option value="Section C">Section C</option>
+                <option value="Reference">Reference</option>
+                <option value="Special Collection">Special Collection</option>
               </select>
             </div>
             <div>

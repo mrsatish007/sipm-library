@@ -62,9 +62,9 @@ export default function Dashboard() {
                 }}>
                   👤
                 </div>
-                <h3 style={{ fontSize: '22px', fontWeight: '600', marginBottom: '5px', color: '#002B5B' }}>Rajesh Kumar</h3>
-                <p style={{ fontSize: '14px', color: '#666' }}>Roll No: S12345</p>
-                <p style={{ fontSize: '14px', color: '#666' }}>MBA - Finance</p>
+                <h3 style={{ fontSize: '22px', fontWeight: '600', marginBottom: '5px', color: '#002B5B' }}>K.Koushik</h3>
+                <p style={{ fontSize: '14px', color: '#666' }}>Roll No:2023568433</p>
+                <p style={{ fontSize: '14px', color: '#666' }}>MCA</p>
               </div>
 
               {/* Stats Cards */}
