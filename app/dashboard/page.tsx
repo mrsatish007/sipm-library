@@ -185,7 +185,7 @@ export default function Dashboard() {
                 </div>
                 <div style={{ textAlign: 'center', backgroundColor: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '15px' }}>
                   <div style={{ fontSize: '35px', marginBottom: '10px' }}>💻</div>
-                  <div style={{ fontSize: '28px', fontWeight: '700', marginBottom: '5px' }}>15</div>
+                  <div style={{ fontSize: '28px', fontWeight: '700', marginBottom: '5px' }}>10</div>
                   <div style={{ fontSize: '14px', opacity: 0.9 }}>Digital Library</div>
                 </div>
               </div>

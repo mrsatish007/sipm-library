@@ -106,7 +106,22 @@ export default function Header() {
         </div>
       )}
 
-      <header style={{ backgroundColor: '#002B5B', color: 'white', padding: '15px 0', position: 'sticky', top: 0, zIndex: 1000, boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }}>
+      <header style={{ 
+        backgroundImage: 'url("https://img.freepik.com/free-photo/books-arrangement-with-copy-space_23-2148898331.jpg")', 
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundColor: '#002B5B', 
+        color: 'white', 
+        padding: '15px 0', 
+        position: 'sticky', 
+        top: 0, 
+        zIndex: 1000, 
+        boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+      }}>
+      <div style={{ 
+        backgroundColor: 'rgba(0, 43, 91, 0.85)', 
+        padding: '15px 0'
+      }}>
       <div className="container">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           {/* Logo and College Name */}
@@ -181,6 +196,7 @@ export default function Header() {
             )}
           </nav>
         )}
+      </div>
       </div>
     </header>
     </>
