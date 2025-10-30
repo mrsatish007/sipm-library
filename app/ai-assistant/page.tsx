@@ -46,25 +46,36 @@ export default function AIAssistant() {
     { id: '10', title: 'Supply Chain Management', author: 'Prof. Alok Sharma', rating: 4.6, category: 'Operations', available: true, coverUrl: 'https://via.placeholder.com/150/002B5B/FFFFFF?text=Supply+Chain' },
     { id: '11', title: 'Artificial Intelligence in Business', author: 'Dr. Meera Iyer', rating: 4.8, category: 'Technology', available: true, coverUrl: 'https://via.placeholder.com/150/002B5B/FFFFFF?text=AI+Business' },
     { id: '12', title: 'Blockchain Applications', author: 'Prof. Vivek Joshi', rating: 4.7, category: 'Technology', available: true, coverUrl: 'https://via.placeholder.com/150/002B5B/FFFFFF?text=Blockchain' },
+    // MCA Books
+    { id: '13', title: 'Advanced Java Programming', author: 'Dr. Sunil Joshi', rating: 4.8, category: 'MCA', available: true, coverUrl: 'https://via.placeholder.com/150/002B5B/FFFFFF?text=Advanced+Java' },
+    { id: '14', title: 'Data Structures and Algorithms', author: 'Prof. Amit Kumar', rating: 4.9, category: 'MCA', available: true, coverUrl: 'https://via.placeholder.com/150/002B5B/FFFFFF?text=Data+Structures' },
+    { id: '15', title: 'Database Management Systems', author: 'Dr. Priya Verma', rating: 4.7, category: 'MCA', available: false, coverUrl: 'https://via.placeholder.com/150/002B5B/FFFFFF?text=DBMS' },
+    { id: '16', title: 'Computer Networks', author: 'Prof. Rajesh Mishra', rating: 4.6, category: 'MCA', available: true, coverUrl: 'https://via.placeholder.com/150/002B5B/FFFFFF?text=Networks' },
+    { id: '17', title: 'Operating Systems Concepts', author: 'Dr. Neha Singh', rating: 4.8, category: 'MCA', available: true, coverUrl: 'https://via.placeholder.com/150/002B5B/FFFFFF?text=OS+Concepts' },
+    { id: '18', title: 'Web Development with React', author: 'Prof. Vikram Sharma', rating: 4.9, category: 'MCA', available: true, coverUrl: 'https://via.placeholder.com/150/002B5B/FFFFFF?text=React+Dev' },
+    { id: '19', title: 'Cloud Computing Fundamentals', author: 'Dr. Ankit Patel', rating: 4.7, category: 'MCA', available: false, coverUrl: 'https://via.placeholder.com/150/002B5B/FFFFFF?text=Cloud+Computing' },
+    { id: '20', title: 'Machine Learning for Developers', author: 'Prof. Shalini Gupta', rating: 4.8, category: 'MCA', available: true, coverUrl: 'https://via.placeholder.com/150/002B5B/FFFFFF?text=ML+Dev' },
   ];
 
   const quickSuggestions = [
     "Find me books on Financial Management",
     "Which books are due this week?",
     "Recommend books similar to Data Analytics",
-    "Show available books on Marketing"
+    "Show available books on Marketing",
+    "Find MCA books on programming",
+    "Recommend books on Computer Networks"
   ];
 
-  // Advanced AI recommendation engine
+  // Advanced AI recommendation engine with optimized search
   const getRecommendations = (query: string): BookRecommendation[] => {
     // Update user preferences based on search
     const updatedPreferences = {...userPreferences};
     updatedPreferences.lastSearches = [query.toLowerCase(), ...updatedPreferences.lastSearches.slice(0, 4)];
     
-    // Extract potential categories from query
+    // Extract potential categories from query with expanded categories list
     const queryWords = query.toLowerCase().split(' ');
-    const categories = ['finance', 'marketing', 'management', 'operations', 'economics', 'technology', 'analytics'];
-    const detectedCategories = categories.filter(cat => queryWords.includes(cat));
+    const categories = ['finance', 'marketing', 'management', 'operations', 'economics', 'technology', 'analytics', 'mca', 'computer', 'programming', 'database', 'network', 'web', 'cloud', 'machine learning'];
+    const detectedCategories = categories.filter(cat => queryWords.some(word => word.includes(cat) || cat.includes(word)));
     
     if (detectedCategories.length > 0) {
       updatedPreferences.categories = [...new Set([...detectedCategories, ...updatedPreferences.categories])];
@@ -72,32 +83,62 @@ export default function AIAssistant() {
     
     setUserPreferences(updatedPreferences);
     
-    // AI recommendation algorithm (simplified)
+    // Enhanced search optimization with semantic matching
+    const searchTerms = query.toLowerCase().replace(/[^\w\s]/gi, '').split(' ').filter(term => term.length > 2);
+    
+    // AI recommendation algorithm with improved relevance scoring
     return bookDatabase.map(book => {
       // Calculate relevance score based on multiple factors
       let relevanceScore = 0;
       
-      // Match by direct category mention
-      if (query.toLowerCase().includes(book.category.toLowerCase())) {
+      // Match by direct category mention (improved with partial matching)
+      if (searchTerms.some(term => book.category.toLowerCase().includes(term))) {
         relevanceScore += 5;
       }
       
-      // Match by author
-      if (query.toLowerCase().includes(book.author.toLowerCase())) {
+      // Match by author with partial name matching
+      const authorWords = book.author.toLowerCase().split(' ');
+      if (searchTerms.some(term => authorWords.some(word => word.includes(term) || term.includes(word)))) {
         relevanceScore += 4;
       }
       
-      // Match by title keywords
+      // Enhanced title keyword matching with semantic relevance
       const titleWords = book.title.toLowerCase().split(' ');
-      queryWords.forEach(word => {
-        if (titleWords.includes(word) && word.length > 3) {
+      searchTerms.forEach(term => {
+        // Exact match
+        if (titleWords.includes(term)) {
           relevanceScore += 3;
+        }
+        // Partial match (for compound words or similar terms)
+        else if (titleWords.some(word => word.includes(term) || term.includes(word))) {
+          relevanceScore += 2;
         }
       });
       
-      // Boost based on user preferences
+      // Synonym matching for common search terms
+      const synonymMap: {[key: string]: string[]} = {
+        'programming': ['coding', 'development', 'software'],
+        'database': ['sql', 'data', 'storage', 'dbms'],
+        'network': ['networking', 'internet', 'communication'],
+        'computer': ['computing', 'pc', 'system'],
+        'web': ['website', 'internet', 'online'],
+        'finance': ['financial', 'money', 'banking'],
+        'marketing': ['market', 'promotion', 'advertising']
+      };
+      
+      // Check for synonym matches
+      Object.entries(synonymMap).forEach(([key, synonyms]) => {
+        if (book.title.toLowerCase().includes(key) || book.category.toLowerCase().includes(key)) {
+          if (searchTerms.some(term => synonyms.includes(term))) {
+            relevanceScore += 2;
+          }
+        }
+      });
+      
+      // Boost based on user preferences with category similarity
       if (updatedPreferences.categories.some(cat => 
-          book.category.toLowerCase().includes(cat.toLowerCase()))) {
+          book.category.toLowerCase().includes(cat.toLowerCase()) || 
+          categories.some(c => c.includes(cat) && book.category.toLowerCase().includes(c)))) {
         relevanceScore += 2;
       }
       
@@ -111,6 +152,13 @@ export default function AIAssistant() {
       // Availability boost
       if (book.available) {
         relevanceScore += 1;
+      }
+      
+      // Recency boost for newer searches
+      if (updatedPreferences.lastSearches.slice(0, 2).some(search => 
+          book.title.toLowerCase().includes(search) || 
+          book.category.toLowerCase().includes(search))) {
+        relevanceScore += 1.5;
       }
       
       return {...book, relevanceScore};
@@ -148,6 +196,9 @@ export default function AIAssistant() {
        else if (query.includes('available')) {
          const availableBooks = recommendations.filter(book => book.available);
          response = `I found ${availableBooks.length} available books matching your interests. You can borrow them immediately!`;
+       }
+       else if (query.includes('mca') || query.includes('computer') || query.includes('programming') || query.includes('network')) {
+         response = `I've found these specialized MCA books that match your search criteria. Our collection includes the latest technical literature:`;
        }
        else if (query.includes('find') || query.includes('search')) {
          response = `I've searched our entire catalog and found these ${recommendations.length} relevant books:`;
