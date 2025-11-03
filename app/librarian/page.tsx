@@ -56,7 +56,7 @@ export default function LibrarianDashboard() {
                 minWidth: '200px'
               }}>
                 <img 
-                  src="https://res.cloudinary.com/dd2miyiq9/image/upload/v1761730660/VARMA_o3f3y3.jpg" 
+                  src="https://sipm.sim.edu.in/wp-content/uploads/2025/11/Vasu.jpg" 
                   alt="P V N VARMA" 
                   style={{ 
                     width: '200px', 
@@ -67,7 +67,7 @@ export default function LibrarianDashboard() {
                     boxShadow: '0 5px 15px rgba(0,0,0,0.1)'
                   }} 
                 />
-                <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#002B5B', marginBottom: '5px' }}>P V N VARMA</h3>
+                <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#002B5B', marginBottom: '5px' }}>T V PADMA VASU</h3>
                 <p style={{ color: '#666', marginBottom: '5px' }}>BLIS</p>
                 <p style={{ color: '#002B5B', fontWeight: '500' }}>ASST.LIBRARIAN</p>
               </div>
@@ -75,7 +75,7 @@ export default function LibrarianDashboard() {
               {/* Bio Description */}
               <div style={{ flex: '1', minWidth: '300px' }}>
                 <p style={{ color: '#333', lineHeight: '1.6', fontSize: '16px' }}>
-                  Mr. P V N Varma serves as the Assistant Librarian at the Sanjeev Institute of Planning and Management (SIPM).
+                  Mr. T V PADMA VASU serves as the Assistant Librarian at the Sanjeev Institute of Planning and Management (SIPM).
                 </p>
                 <p style={{ color: '#333', lineHeight: '1.6', fontSize: '16px', marginTop: '15px' }}>
                   He plays a crucial role in managing and maintaining the institute's extensive library resources, ensuring that students and faculty have seamless access to the necessary academic materials. Mr. Varma is dedicated to enhancing the library's services, specializing in digital resource management, cataloging, and implementing modern library technologies to support research and learning across all departments. His commitment contributes significantly to a vibrant and resource-rich academic environment at SIPM.
