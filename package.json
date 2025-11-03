@@ -1,16 +1,4 @@
 {
-<<<<<<< HEAD
-  "name": "library-mangment",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
-=======
   "name": "library_management",
   "version": "0.1.0",
   "private": true,
@@ -34,5 +22,4 @@
     "tailwindcss": "^4.1.16",
     "typescript": "^5.4.0"
   }
->>>>>>> 64eeed29757d64834b06aa3fb66fd7590ccb540f
 }
